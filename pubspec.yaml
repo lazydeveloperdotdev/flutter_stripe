@@ -1,0 +1,19 @@
+name: flutter_stripe
+description: Flutter plugin to accept payments from Stripe payment gateway.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_masked_text: ^0.7.0
+  font_awesome_flutter: ^8.4.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+flutter:
+  uses-material-design: true
