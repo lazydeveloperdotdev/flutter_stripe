@@ -104,139 +104,138 @@ class _CardWidget extends State<CardWidget> {
     }
 
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-      padding: EdgeInsets.all(10),
-      /*decoration: BoxDecoration(
+        margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+        padding: EdgeInsets.all(10),
+        /*decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5),
           gradient: LinearGradient(
               colors: [Colors.deepPurpleAccent, Colors.blueAccent],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight)),*/
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: TextField(
-              controller: _cardController,
-              onChanged: (val) {
-                _setNumber(val);
-              },
-              keyboardType: TextInputType.phone,
-              style: textStyle,
-              inputFormatters: [LengthLimitingTextInputFormatter(19)],
-              decoration: InputDecoration(
-                  labelText: "Card Number",
-                  suffixIcon: Icon(
-                    _card,
-                    color: Colors.white,
-                  ),
-                  labelStyle: labelStyle,
-                  enabledBorder: enabledBorder,
-                  focusedBorder: focusedBorder),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: TextField(
+                controller: _cardController,
+                onChanged: (val) {
+                  _setNumber(val);
+                },
+                keyboardType: TextInputType.phone,
+                style: textStyle,
+                inputFormatters: [LengthLimitingTextInputFormatter(19)],
+                decoration: InputDecoration(
+                    labelText: "Card Number",
+                    suffixIcon: Icon(
+                      _card,
+                      color: Colors.white,
+                    ),
+                    labelStyle: labelStyle,
+                    enabledBorder: enabledBorder,
+                    focusedBorder: focusedBorder),
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Row(
-              children: <Widget>[
-                Text(
-                  "Valid\nThru".toUpperCase(),
-                  style: TextStyle(fontSize: 11, color: Colors.white30),
-                ),
-                Expanded(
-                  child: Container(
-                    margin: EdgeInsets.all(15),
-                    decoration: BoxDecoration(
-                        border:
-                            Border(bottom: BorderSide(color: Colors.white30))),
-                    child: DropdownButtonHideUnderline(
-                      child: DropdownButton<int>(
-                        value: _month,
-                        hint: Text(
-                          "MM",
-                          style: labelStyle,
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Row(
+                children: <Widget>[
+                  Text(
+                    "Valid\nThru".toUpperCase(),
+                    style: TextStyle(fontSize: 11, color: Colors.white30),
+                  ),
+                  Expanded(
+                    child: Container(
+                      margin: EdgeInsets.all(15),
+                      decoration: BoxDecoration(
+                          border: Border(
+                              bottom: BorderSide(color: Colors.white30))),
+                      child: DropdownButtonHideUnderline(
+                        child: DropdownButton<int>(
+                          value: _month,
+                          hint: Text(
+                            "MM",
+                            style: labelStyle,
+                          ),
+                          style: textStyle,
+                          items: months.map((KeyValue value) {
+                            return DropdownMenuItem<int>(
+                              value: value.value,
+                              child: Text(
+                                value.key,
+                                style: textStyle,
+                              ),
+                            );
+                          }).toList(),
+                          onChanged: (int val) {
+                            setState(() {
+                              _month = val;
+                            });
+                            _setMonth(val);
+                          },
                         ),
-                        style: textStyle,
-                        items: months.map((KeyValue value) {
-                          return DropdownMenuItem<int>(
-                            value: value.value,
-                            child: Text(
-                              value.key,
-                              style: textStyle,
-                            ),
-                          );
-                        }).toList(),
-                        onChanged: (int val) {
-                          setState(() {
-                            _month = val;
-                          });
-                          _setMonth(val);
-                        },
                       ),
                     ),
                   ),
-                ),
-                Expanded(
-                  child: Container(
-                    margin: EdgeInsets.all(15),
-                    decoration: BoxDecoration(
-                        border:
-                            Border(bottom: BorderSide(color: Colors.white30))),
-                    child: DropdownButtonHideUnderline(
-                      child: DropdownButton<int>(
-                        value: _year,
-                        hint: Text(
-                          "YY",
-                          style: labelStyle,
-                        ),
-                        style: textStyle,
-                        items: years.map((int value) {
-                          return DropdownMenuItem<int>(
-                            value: value,
-                            child: Text(
-                              "$value",
-                              style: textStyle,
-                            ),
-                          );
-                        }).toList(),
-                        onChanged: (int val) {
-                          setState(() {
-                            _year = val;
-                          });
+                  Expanded(
+                    child: Container(
+                      margin: EdgeInsets.all(15),
+                      decoration: BoxDecoration(
+                          border: Border(
+                              bottom: BorderSide(color: Colors.white30))),
+                      child: DropdownButtonHideUnderline(
+                        child: DropdownButton<int>(
+                          value: _year,
+                          hint: Text(
+                            "YY",
+                            style: labelStyle,
+                          ),
+                          style: textStyle,
+                          items: years.map((int value) {
+                            return DropdownMenuItem<int>(
+                              value: value,
+                              child: Text(
+                                "$value",
+                                style: textStyle,
+                              ),
+                            );
+                          }).toList(),
+                          onChanged: (int val) {
+                            setState(() {
+                              _year = val;
+                            });
 
-                          _setYear(val);
-                        },
+                            _setYear(val);
+                          },
+                        ),
                       ),
                     ),
                   ),
-                ),
-                Flexible(
-                    child: Padding(
-                  padding: const EdgeInsets.only(left: 10),
-                  child: TextField(
-                    onChanged: (val) {
-                      _setCVV(val);
-                    },
-                    controller: _cvvController,
-                    inputFormatters: [LengthLimitingTextInputFormatter(3)],
-                    obscureText: true,
-                    style: textStyle,
-                    keyboardType: TextInputType.numberWithOptions(
-                        signed: false, decimal: false),
-                    decoration: InputDecoration(
-                        hintText: "CVV",
-                        hintStyle: labelStyle,
-                        enabledBorder: enabledBorder,
-                        focusedBorder: focusedBorder),
-                  ),
-                ))
-              ],
-            ),
-          )
-        ],
-      ),
-    );
+                  Flexible(
+                      child: Padding(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: TextField(
+                      onChanged: (val) {
+                        _setCVV(val);
+                      },
+                      controller: _cvvController,
+                      inputFormatters: [LengthLimitingTextInputFormatter(3)],
+                      obscureText: true,
+                      style: textStyle,
+                      keyboardType: TextInputType.numberWithOptions(
+                          signed: false, decimal: false),
+                      decoration: InputDecoration(
+                          hintText: "CVV",
+                          hintStyle: labelStyle,
+                          enabledBorder: enabledBorder,
+                          focusedBorder: focusedBorder),
+                    ),
+                  ))
+                ],
+              ),
+            )
+          ],
+        ));
   }
 }
 
