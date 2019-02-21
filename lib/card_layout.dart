@@ -103,15 +103,16 @@ class _CardWidget extends State<CardWidget> {
       years.add(yy);
     }
 
-    return Container(
+    return Theme(
+      child: Container(
         margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         padding: EdgeInsets.all(10),
-        /*decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5),
-          gradient: LinearGradient(
-              colors: [Colors.deepPurpleAccent, Colors.blueAccent],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight)),*/
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(5),
+            gradient: LinearGradient(
+                colors: [Colors.deepPurpleAccent, Colors.blueAccent],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight)),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
@@ -235,7 +236,10 @@ class _CardWidget extends State<CardWidget> {
               ),
             )
           ],
-        ));
+        ),
+      ),
+      data: ThemeData(brightness: Brightness.dark),
+    );
   }
 }
 
